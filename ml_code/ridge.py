@@ -1,11 +1,11 @@
 import numpy as np
 
 def mse(y, y_hat, w, lam):
-    l = 0.5 * np.mean((y_hat-y)**2) + lam * np.sum(w[1:]**2)
+    l = 0.5 * np.mean((y_hat-y)**2) + lam/(2.*y.shape[0]) * np.sum(w[1:]**2)
     return l
 
 def mse_grad(X, y, y_hat, w, lam):
-    return (1./y.shape[0]) * (X.T @ (y_hat-y)) + lam * np.r_[[[0.]], w[1:]]
+    return (1./y.shape[0]) * (X.T @ (y_hat-y) + lam * np.r_[[[0.]], w[1:]])
 
 X         = [[8, 4], [4, 6], [9, 0], [2., 5], [3, 4]]
 y         = [0., 1, 1, 1, 0]

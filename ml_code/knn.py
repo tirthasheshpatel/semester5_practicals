@@ -21,10 +21,11 @@ if k%2 == 0:
 
 dist = dist_func(X, X_new)
 if ordering == "assending":
-    print(f"Top {k} neighbors   (ordered by {dist_func}) : {(dist[np.argsort(dist)])[:k]}")
-    print(f"Top {k} class label (ordered by {dist_func}) : {(y[np.argsort(dist)])[:k]}")
-    print(f"Predicted label : {np.argmax([np.sum((y[np.argsort(dist)])[:k] == 0), np.sum((y[np.argsort(dist)])[:k] == 1)])}")
+    print(f"Top {k} neighbors    : {(dist[np.argsort(dist)])[:k]}")
+    print(f"Top {k} class label  : {(y[np.argsort(dist)])[:k]}")
+    print(f"Predicted label      : {np.argmax([np.sum((y[np.argsort(dist)])[:k] == 0), np.sum((y[np.argsort(dist)])[:k] == 1)])}")
 else:
-    print(f"Top {k} neighbors   (ordered by {dist_func}) : {(dist[np.argsort(dist)])[-k:][::-1]}")
-    print(f"Top {k} class label (ordered by {dist_func}) : {(y[np.argsort(dist)])[-k:][::-1]}")
-    print(f"Predicted label : {np.argmax([np.sum((y[np.argsort(dist)])[-k:][::-1] == 0), np.sum((y[np.argsort(dist)])[-k:][::-1] == 1)])}")
+    print(f"Top {k} neighbors    : {(dist[np.argsort(dist)])[-k:][::-1]}")
+    print(f"Top {k} class label  : {(y[np.argsort(dist)])[-k:][::-1]}")
+    print(f"Predicted label      : {np.argmax([np.sum((y[np.argsort(dist)])[-k:][::-1] == 0), np.sum((y[np.argsort(dist)])[-k:][::-1] == 1)])}")
+
