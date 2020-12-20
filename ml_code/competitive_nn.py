@@ -16,9 +16,11 @@ w = np.array([
 ])
 
 eta    = 0.5
-epochs = 1
+epochs = 2
 
 for _ in range(1, epochs+1):
+  print(f"Epoch: {_}")
+  print(50*"-")
   for i in range(X.shape[0]):
     a = 1./np.linalg.norm(w - X[i][None, :], axis=1)
     a = a.ravel()
@@ -27,3 +29,4 @@ for _ in range(1, epochs+1):
     print(f"Winner neuron: {winner+1}")
     w[winner] += eta * (X[i] - w[winner])
     print(f"Updated weights of the neuron: {w[winner]}")
+  print(50*"-")
