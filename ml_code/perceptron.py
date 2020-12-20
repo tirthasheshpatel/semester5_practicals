@@ -1,34 +1,50 @@
+import sys
+import time
+
 import numpy as np
-
-def fun(n):
-    a = [int(i>=0) for i in n]
-    return a
-
-X         = [1.]
-y         = [0.]
-w         = [8.]
-b         = [-3.]
-
-epochs    = 1
-alpha     = 1
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 
-X, y, w, b= np.asarray(X), np.asarray(y), np.asarray(w), np.asarray(b)
+X = np.array([
+    [0.0],
+    [0.17],
+    [0.33],
+    [0.50],
+    [0.67],
+    [0.83],
+    [1.0]
+])
+y = np.array([
+    0.,
+    0.,
+    0.,
+    0.,
+    1.,
+    1.,
+    1.
+])
 
-for i in range(1, epochs+1):
-    print(f"Epoch {i}")
-    print(32*"-")
-    n = X*w + b
-    a = fun(n)
-    e = a - y
-    
-    w = w + alpha*e*X
-    b = b + alpha*e
-    
-    print(f"n : {n}")
-    print(f"a : {a}")
-    print(f"e : {e}")
-    print(f"w_new : {w.ravel()}")
-    print(f"b_new : {b.ravel()}")
-   
-    print(32*"-")
+
+num_epochs  = 2
+num_neurons = 1
+α           = 0.1
+
+
+w = np.asarray([-0.36])
+b = np.asarray(-0.1)
+
+
+for _ in range(1, num_epochs+1):
+    print(f"Epoch {_}")
+    print(30*"-")
+    for i in range(X.shape[0]):
+        a = np.sum(w * X[i]) + b
+        a = 1.*(a>=0) # promote the datatype to at least float
+        e = a - y[i]
+        w = w + α * e * X[i]
+        b = b + α * e
+        print(f"Training Example {i}: w = {w}, b = {b}, error : {e}")
+    print(30*"-")
+
+
